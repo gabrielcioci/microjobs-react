@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: #edf2f7;
+}
+
+#root {
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+}
+
+.success-toast {
+    background: #4fd1c5;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+.modal {
+    z-index: 100;
+}
+
+.job:hover, .expanded {
+    margin-left: 12px;
+}
+
+.logo {
+    height: 40px;
+}
+
+.select-options {
+    top: 48px;
+}
+
+.modal-container {
+    background: rgba(0, 0, 0, .2);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    z-index: 105;
+}
