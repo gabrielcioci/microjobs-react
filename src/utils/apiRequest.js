@@ -32,7 +32,7 @@ export default async (endpoint, data = {}, ctx = null, rawError = false) => {
     try {
         // Make the request
         const res = await axios.post(
-            `/api${endpoint}`,
+            `${process.env.REACT_APP_API_URL}/api${endpoint}`,
             data,
             {
                 headers

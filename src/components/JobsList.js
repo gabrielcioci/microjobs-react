@@ -16,7 +16,7 @@ const JobsList = (props) => {
     const {jobs, modals} = props
     const dispatch = useDispatch()
     useEffect(() => {
-        axios.get(`/api/jobs/`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/`)
             .then(response => {
                 dispatch(storeJobs(response.data))
             })

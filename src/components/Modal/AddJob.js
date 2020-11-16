@@ -38,7 +38,7 @@ const AddJob = (props) => {
         }
 
         // make the post req
-        axios.post(`/api/jobs/add`, job, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/add`, job, {headers})
             .then(() => {
 
                 // clear input fields

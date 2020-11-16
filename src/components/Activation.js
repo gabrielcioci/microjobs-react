@@ -13,7 +13,7 @@ const Activation = (props) => {
     const dispatch = useDispatch()
     const {id} = props.match.params
     useEffect(() => {
-        axios.post(`/api/activation/user/${id}`)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/activation/user/${id}`)
             .then(response => {
                 setSuccessMessage(response.data.message)
             })

@@ -17,7 +17,7 @@ const Page = props => {
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
         // Get user info based on token
-        axios.get(`/api/auth/user`, {headers})
+        axios.get(`${process.env.REACT_APP_API_URL}/api/auth/user`, {headers})
             .then(res => {
                 dispatch(login(res.data))
             })

@@ -28,7 +28,7 @@ const Register = props => {
             password: password,
             phone: phone
         }
-        axios.post(`/api/register`, user)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/register`, user)
             .then(res => {
                 // show toast
                 toast.success(res.data.message, {

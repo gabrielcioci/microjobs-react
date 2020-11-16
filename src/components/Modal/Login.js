@@ -23,7 +23,7 @@ const Login = props => {
             email: email,
             password: password
         }
-        axios.post(`/api/auth`, credentials)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/auth`, credentials)
             .then(res => {
                 dispatch(login(res.data))
                 setCookie("token", res.data.token, {path: "/"});

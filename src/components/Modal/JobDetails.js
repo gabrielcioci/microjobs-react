@@ -11,7 +11,7 @@ const JobDetails = props => {
     const [author, setAuthor] = useState('')
 
     useEffect(() => {
-        axios.get(`/api/users/${jobModal.postedBy}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/users/${jobModal.postedBy}`)
             .then(res => setAuthor(res.data))
     }, [])
 

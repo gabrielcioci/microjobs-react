@@ -17,7 +17,7 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.get(`/api/jobs/draft`,{headers})
+        axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/draft`,{headers})
             .then(response => {
                 setJobs(response.data)
             })
@@ -65,7 +65,7 @@ const Review = (props) => {
             postedBy: job.postedBy
         }
         // update job
-        axios.post(`/api/jobs/update/${job._id}`, updatedJob, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/update/${job._id}`, updatedJob, {headers})
             .catch((error) => {
                 console.log(error)
             })
@@ -79,7 +79,7 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.delete(`/api/jobs/${job._id}`, {headers})
+        axios.delete(`${process.env.REACT_APP_API_URL}/api/jobs/${job._id}`, {headers})
             .catch((error) => {
                 console.log(error)
             })
