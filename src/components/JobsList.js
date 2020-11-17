@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {connect, useDispatch} from 'react-redux';
-import {addJobModal, hideAddJobModal, hideJobModal, storeJobs} from "../store/actions";
+import {addJobModal, hideAddJobModal, hideJobModal, showLoginModal, storeJobs} from "../store/actions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Job from "./Job";
 import {login} from "../store/actions";
@@ -13,7 +13,7 @@ import Page from "./Layout/Page";
 
 
 const JobsList = (props) => {
-    const {jobs, modals} = props
+    const {jobs, modals, user} = props
     const dispatch = useDispatch()
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/`)
@@ -25,6 +25,11 @@ const JobsList = (props) => {
             })
     }, [])
 
+    const handleAddJob = (e) => {
+        if (user) dispatch(addJobModal())
+        else dispatch(showLoginModal())
+    }
+
 
     return (
         <Page>
@@ -33,7 +38,7 @@ const JobsList = (props) => {
                     <h3 className="text-2xl text-gray-900">Microjoburile zilei</h3>
                     <div
                         className="ml-auto bg-indigo-600 hover:bg-indigo-500 py-2 px-4 rounded text-white cursor-pointer transition-all duration-200"
-                        onClick={(e) => dispatch(addJobModal())}><FontAwesomeIcon icon="briefcase"/> Adaugă job
+                        onClick={(e) => handleAddJob(e)}><FontAwesomeIcon icon="briefcase"/> Adaugă job
                     </div>
                 </div>
                 {modals.addJobModal && <Modal title='Adaugă job' closeAction={hideAddJobModal}><AddJob/></Modal>}
@@ -50,7 +55,8 @@ const JobsList = (props) => {
 
 const mapStateToProps = (state) => ({
     jobs: state.jobs.jobs,
-    modals: state.modals
+    modals: state.modals,
+    user: state.auth.user
 })
 
 export default connect(mapStateToProps)(JobsList)

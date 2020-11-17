@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import logo from '../assets/images/mjobs.svg'
 import Page from "./Layout/Page";
 import {Link} from "react-router-dom";
+import {login} from "../store/actions";
 
 
 const Activation = (props) => {
@@ -16,6 +17,10 @@ const Activation = (props) => {
         axios.post(`${process.env.REACT_APP_API_URL}/api/activation/user/${id}`)
             .then(response => {
                 setSuccessMessage(response.data.message)
+                axios.post(`${process.env.REACT_APP_API_URL}/api/users/${id}`)
+                    .then(response => {
+                        dispatch(login(response.data))
+                    })
             })
             .catch((error) => {
                 setFormError(error.response.data.message)

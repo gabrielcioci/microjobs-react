@@ -72,9 +72,6 @@ const AddJob = (props) => {
         method(e.target.value)
     }
 
-    if (!user)
-        return (<div className="text-gray-600">Trebuie sa fi autentificat pentru a adăuga un job.</div>)
-
     return (
         <form className="flex-col" onSubmit={onSubmit}>
             <div className="flex-col">
