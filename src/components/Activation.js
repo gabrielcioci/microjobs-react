@@ -17,7 +17,7 @@ const Activation = (props) => {
         axios.post(`${process.env.REACT_APP_API_URL}/api/activation/user/${id}`)
             .then(response => {
                 setSuccessMessage(response.data.message)
-                axios.post(`${process.env.REACT_APP_API_URL}/api/users/${id}`)
+                axios.get(`${process.env.REACT_APP_API_URL}/api/users/${id}`)
                     .then(response => {
                         dispatch(login(response.data))
                     })
