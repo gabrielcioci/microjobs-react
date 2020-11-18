@@ -25,7 +25,7 @@ const Page = props => {
     return (
         <>
             {!props.hideHeader && <Header/>}
-            <div className="container mx-auto">
+            <div className="container mx-auto px-4 md:px-0">
                 {props.children}
             </div>
             {!props.hideFooter && <Footer/>}

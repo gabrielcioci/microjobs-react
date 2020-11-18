@@ -7,17 +7,20 @@ import {showLoginModal, hideLoginModal, hideRegisterModal, showLogoutModal, hide
 import Login from "../Modal/Login";
 import Register from "../Modal/Register";
 import Logout from "../Modal/Logout";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Header = (props) => {
     const {loginModal, registerModal, logoutModal} = props.modals
     const {user} = props
+    const [menu, setMenu] = useState(false)
     const dispatch = useDispatch()
 
     return (
-        <nav className="flex items-center bg-white shadow-sm px-6 lg:px-8 xl:px-12 py-2 xl:py-4">
-            <Link to="/" className="text-2xl text-gray-900 flex items-center"><img src={logo} alt="logo"
+        <nav className="flex items-center bg-white shadow-sm px-4 md:px-8 lg:px-12 py-2 xl:py-4">
+            <Link to="/" className="text-xl md:text-2xl text-gray-900 flex items-center"><img src={logo} alt="logo"
                                                                                    className="logo mr-4"/>MicroJobs</Link>
-            <ul className="flex ml-auto">
+            <FontAwesomeIcon icon="bars" className="flex md:hidden ml-auto text-gray-700 cursor-pointer"/>
+            <ul className={`hidden md:flex ml-auto`}>
                 <li className="text-gray-700 hover:text-indigo-500 transition-all duration-200">
                     <Link to="/" className="nav-link">Joburi</Link>
                 </li>

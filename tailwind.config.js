@@ -5,7 +5,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
     theme: {
         screens: {
-            sm: '640px',
+            sm: '375px',
             md: '768px',
             lg: '1024px',
             xl: '1366px',
@@ -24,6 +24,9 @@ module.exports = {
                 ]
             },
             width: {
+                'mxc': 'max-content'
+            },
+            minWidth: {
                 'mxc': 'max-content'
             }
         }

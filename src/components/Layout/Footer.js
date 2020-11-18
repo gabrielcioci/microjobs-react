@@ -8,8 +8,8 @@ const Footer = (props) => {
     const dispatch = useDispatch()
 
     return (
-        <div className="mt-auto footer mb-2 flex items-center">
-            <p className="text-sm text-gray-500 ml-auto mr-auto">Copyright © 2020 Microjobs România. Toate drepturile rezervate.</p>
+        <div className="mt-auto footer mb-2 mx-4 flex items-center">
+            <p className="text-sm text-center text-gray-500 ml-auto mr-auto">Copyright © 2020 Microjobs România. Toate drepturile rezervate.</p>
         </div>
     )
 }

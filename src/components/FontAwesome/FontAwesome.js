@@ -12,7 +12,8 @@ import {
     faLock,
     faUser,
     faPhoneAlt,
-    faArrowLeft
+    faArrowLeft,
+    faBars
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faClock, faBriefcase, faCheckDouble, faClipboardCheck, faTags, faCalendarAlt, faMapMarkerAlt, faTimes, faLock, faEnvelope, faUser, faPhoneAlt,faArrowLeft)
+library.add(faClock, faBriefcase, faCheckDouble, faClipboardCheck, faTags, faCalendarAlt, faMapMarkerAlt, faTimes, faLock, faEnvelope, faUser, faPhoneAlt,faArrowLeft,faBars)

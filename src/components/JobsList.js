@@ -33,12 +33,12 @@ const JobsList = (props) => {
 
     return (
         <Page>
-            <div className="mt-20 mb-20 md:max-w-xl lg:max-w-2xl mx-auto">
+            <div className="mt-20 mb-20 sm:max-w-xl lg:max-w-2xl mx-auto">
                 <div className="flex items-center mb-4">
                     <h3 className="text-2xl text-gray-900">Microjoburile zilei</h3>
                     <div
-                        className="ml-auto bg-indigo-600 hover:bg-indigo-500 py-2 px-4 rounded text-white cursor-pointer transition-all duration-200"
-                        onClick={(e) => handleAddJob(e)}><FontAwesomeIcon icon="briefcase"/> Adaugă job
+                        className="ml-auto bg-indigo-600 hover:bg-indigo-500 py-2 px-3 md:px-4 rounded text-white cursor-pointer transition-all duration-200"
+                        onClick={(e) => handleAddJob(e)}><FontAwesomeIcon icon="briefcase"/><span className="hidden md:inline-block ml-2">Adaugă job</span>
                     </div>
                 </div>
                 {modals.addJobModal && <Modal title='Adaugă job' closeAction={hideAddJobModal}><AddJob/></Modal>}
