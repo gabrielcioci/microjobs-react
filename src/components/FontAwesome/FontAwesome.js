@@ -15,6 +15,7 @@ import {
     faArrowLeft,
     faBars,
     faCaretDown,
+    faBusinessTime
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faClock, faBriefcase, faCheckDouble, faClipboardCheck, faTags, faCalendarAlt, faMapMarkerAlt, faTimes, faLock, faEnvelope, faUser, faPhoneAlt, faArrowLeft, faBars, faCaretDown)
+library.add(faClock, faBriefcase, faCheckDouble, faClipboardCheck, faTags, faCalendarAlt, faMapMarkerAlt, faTimes, faLock, faEnvelope, faUser, faPhoneAlt, faArrowLeft, faBars, faCaretDown, faBusinessTime)
