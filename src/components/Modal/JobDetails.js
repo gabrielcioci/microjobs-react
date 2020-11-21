@@ -23,8 +23,13 @@ const JobDetails = props => {
                         className="text-gray-700">{jobModal.location}</span></div>
                 </div>
                 <div className="flex items-center mt-1">
-                    <div className="text-lg text-gray-500">Timp: <span
+                    <div className="text-lg text-gray-500">Durează: <span
                         className="text-gray-700">{jobModal.duration} de minute</span>
+                    </div>
+                </div>
+                <div className="flex items-center mt-1">
+                    <div className="text-lg text-gray-500">Recompensă: <span
+                        className="text-gray-700">{jobModal.reward} LEI</span>
                     </div>
                 </div>
                 <div className="flex items-center flex-wrap mt-4 text-xs">
@@ -54,7 +59,7 @@ const JobDetails = props => {
                 </div>}
                 <div
                     className="rounded w-full mt-4 py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-center text-white transition-all duration-200 cursor-pointer"
-                    onClick={(e) => setContactDetails(!contactDetails)}>Date de contact
+                    onClick={(e) => setContactDetails(!contactDetails)}>Contactează
                 </div>
             </div>
     )

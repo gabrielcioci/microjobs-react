@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const SelectInput = (props) => {
     const {options, selected, setSelected} = props
@@ -13,7 +14,7 @@ const SelectInput = (props) => {
     return (
         <div onClick={(e) => setOptionsVisible(!optionsVisible)}
              className="rounded flex w-full relative cursor-pointer mt-2 border border-gray-300 p-2 outline-none hover:border-indigo-600 transition-all duration-200">
-            <div className="text-indigo-800 w-full">{selected.label}</div>
+            <div className="flex items-center text-indigo-800 w-full">{selected.label}<FontAwesomeIcon className="ml-auto text-gray-400" icon="caret-down"/></div>
             {optionsVisible && <div
                 className="select-options absolute rounded z-10 left-0 border border-gray-300 w-full py-2 bg-white shadow-md h-64 overflow-auto">
                 {options && options.map(option => <div key={option.value}

@@ -44,11 +44,17 @@ body {
 
 .modal {
     z-index: 105;
+    max-height:90%;
+    overflow: auto;
 }
 
 @media only screen and (min-width: 768px) {
     .modal-container {
         align-items: center;
         justify-content: center;
+    }
+    .modal {
+        max-height: initial;
+        overflow: initial;
     }
 }

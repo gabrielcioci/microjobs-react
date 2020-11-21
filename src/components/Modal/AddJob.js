@@ -12,6 +12,7 @@ const AddJob = (props) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [duration, setDuration] = useState(10)
+    const [reward, setReward] = useState(10)
     const [tags, setTags] = useState('')
     const [location, setLocation] = useState(cities[0])
     const [formError, setFormError] = useState()
@@ -34,6 +35,7 @@ const AddJob = (props) => {
             location: location.label,
             tags: tags.split(','),
             date: new Date(),
+            reward: reward,
             postedBy: user._id
         }
 
@@ -44,9 +46,10 @@ const AddJob = (props) => {
                 // clear input fields
                 setTitle('')
                 setDescription('')
-                setDuration(0)
+                setDuration(10)
                 setLocation('')
                 setTags('')
+                setReward(10)
 
                 // show toast & hide form
                 toast.success('Jobul tău a fost trimis la verificare. Va fi vizibil în lista de joburi după ce este verificat.', {
@@ -90,13 +93,23 @@ const AddJob = (props) => {
                           name="description" value={description}
                           onChange={(e) => handleChange(e, setDescription)}/>
             </div>
+            <div className="flex-col w-full mt-2">
+                <label className="block text-gray-500">Locație</label>
+                <SelectInput options={cities} selected={location} setSelected={setLocation}/>
+            </div>
             <div className="flex justify-between">
-                <div className="flex-col w-3/4 mt-2">
-                    <label className="block text-gray-500">Locație</label>
-                    <SelectInput options={cities} selected={location} setSelected={setLocation}/>
+                <div className="flex-col w-1/2 mt-2">
+                    <label className="block text-gray-500">Recompensă (LEI)</label>
+                    <input type="number"
+                           min={10}
+                           step={1}
+                           placeholder="LEI"
+                           className="rounded flex w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
+                           name="reward" value={reward}
+                           onChange={(e) => handleChange(e, setReward)}/>
                 </div>
-                <div className="flex-col ml-4 w-1/4 mt-2">
-                    <label className="block text-gray-500">Durație</label>
+                <div className="flex-col ml-4 w-1/2 mt-2">
+                    <label className="block text-gray-500">Durație (minute)</label>
                     <input type="number"
                            min={10}
                            step={5}
@@ -107,7 +120,7 @@ const AddJob = (props) => {
                 </div>
             </div>
             <div className="flex-col mt-2">
-                <label className="block text-gray-500">Etichete</label>
+                <label className="block text-gray-500">Etichete (maxim 5)</label>
                 <input type="text"
                        placeholder="Etichete separate prin virgulă"
                        className="rounded flex w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"

@@ -62,6 +62,7 @@ const Review = (props) => {
             tags: job.tags,
             date: job.date,
             reviewed: true,
+            reward: job.reward,
             postedBy: job.postedBy
         }
         // update job
@@ -101,8 +102,13 @@ const Review = (props) => {
                                 className="text-gray-700">{job.location}</span></div>
                         </div>
                         <div className="flex items-center mt-1">
-                            <div className="text-md text-gray-500">Timp: <span
+                            <div className="text-md text-gray-500">Durează: <span
                                 className="text-gray-700">{job.duration} de minute</span>
+                            </div>
+                        </div>
+                        <div className="flex items-center mt-1">
+                            <div className="text-md text-gray-500">Recompensă: <span
+                                className="text-gray-700">{job.reward} LEI</span>
                             </div>
                         </div>
                         <div className="flex items-center flex-wrap mt-4 text-xs">
