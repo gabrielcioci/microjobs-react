@@ -89,7 +89,7 @@ const AddJob = (props) => {
                 <label className="block text-gray-500">Descriere</label>
                 <textarea required
                           placeholder="Descriere job"
-                          className="rounded flex w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
+                          className="rounded flex resize-none w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
                           name="description" value={description}
                           onChange={(e) => handleChange(e, setDescription)}/>
             </div>
