@@ -12,7 +12,7 @@ import categories from "../../utils/categories";
 const Support = props => {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
-    const [text, setText] = useState('')
+    const [description, setDescription] = useState('')
 
     const [formError, setFormError] = useState()
     const dispatch = useDispatch()
@@ -32,15 +32,20 @@ const Support = props => {
             name: name,
             email: email,
             category: category.value,
-            text: text
+            description: description
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/support`, ticket)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/support/ticket`, ticket)
             .then(res => {
-                // show toast
-                toast.success(res.data.message, {
+                // clear input fields
+                setName('')
+                setDescription('')
+                setCategory(any())
+                setEmail('')
+                // show toast & hide form
+                toast.success('Tichetul tău a fost trimis cu success. Vei fi contactat curând.', {
                     position: "top-right",
                     className: 'success-toast',
-                    autoClose: 8000,
+                    autoClose: 5000,
                     closeButton: false,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -77,8 +82,8 @@ const Support = props => {
                 <textarea required
                           placeholder="Descrie problema care a apărut"
                           className="rounded flex resize-none w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
-                          name="description" value={text}
-                          onChange={(e) => handleChange(e, setText)}/>
+                          name="description" value={description}
+                          onChange={(e) => handleChange(e, setDescription)}/>
             </div>
             {formError &&
             <div className="mt-4 p-1 bg-red-200 border border-red-400 rounded text-xs text-red-600">{formError}</div>}
