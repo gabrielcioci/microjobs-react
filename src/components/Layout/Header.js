@@ -38,10 +38,10 @@ const Header = (props) => {
                 <li className="text-gray-700 hover:text-indigo-500 transition-all duration-200">
                     <Link to="/" className="nav-link">Joburi</Link>
                 </li>
-                {user && user.role === 'professional' ?
-                    <li className="text-gray-700 md:ml-4 hover:text-indigo-500 transition-all duration-200">
-                        <Link to="/review-tool" className="nav-link">Review tool</Link>
-                    </li> : null}
+                {user && user.role === 'professional' &&
+                <li className="text-gray-700 md:ml-4 hover:text-indigo-500 transition-all duration-200">
+                    <Link to="/review-tool" className="nav-link">Review tool</Link>
+                </li>}
                 <li className="text-gray-700 md:ml-4 hover:text-indigo-500 cursor-pointer transition-all duration-200">
                     {user ? <div className="nav-link" onClick={(e) => dispatch(showLogoutModal())}>Deconectare</div> :
                         <div className="nav-link"

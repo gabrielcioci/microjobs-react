@@ -4,7 +4,7 @@ import {connect, useDispatch} from "react-redux";
 import {jobModal} from "../store/actions";
 
 const Job = (props) => {
-    const {modals, job} = props
+    const {modals, job, user} = props
     const dispatch = useDispatch()
 
     return (
@@ -36,7 +36,8 @@ const Job = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    modals: state.modals
+    modals: state.modals,
+    user: state.auth.user,
 })
 
 export default connect(mapStateToProps)(Job)

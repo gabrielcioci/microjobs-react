@@ -12,14 +12,17 @@ import SearchInput from "./SearchInput";
 
 
 const JobsList = (props) => {
-    const {jobs, modals, user} = props
+    const {modals, user} = props
     const [loading, setLoading] = useState(true)
+    const [jobs, setJobs] = useState()
+    const [onlyUserJobs, setOnlyUserJobs] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/`)
             .then(response => {
                 setLoading(false)
                 dispatch(storeJobs(response.data))
+                setJobs(response.data)
             })
             .catch((error) => {
                 console.log(error)
@@ -31,18 +34,39 @@ const JobsList = (props) => {
         else dispatch(showLoginModal())
     }
 
+    const handleJobsFilter = (e) => {
+        setOnlyUserJobs(!onlyUserJobs)
+        if (onlyUserJobs)
+            setJobs(props.jobs.filter((job) => job.postedBy === user._id))
+        else setJobs(props.jobs)
+    }
+
 
     return (
         <Page>
             <div className="mt-20 mb-20 sm:max-w-xl lg:max-w-2xl mx-auto">
                 <div className="flex items-center mb-4">
-                    <h3 className="text-2xl text-gray-900">Microjoburile zilei</h3>
+                    <h3 className="text-2xl text-gray-700">Microjoburile zilei</h3>
+                    {user && <div
+                        className="flex items-center ml-auto bg-gray-300 hover:text-gray-700 py-2 px-3 md:px-4 rounded text-gray-600 cursor-pointer transition-all duration-200"
+                        onClick={(e) => handleJobsFilter(e)}>
+                        <div>
+                            <FontAwesomeIcon icon="align-left"/>
+                        </div>
+                        <span
+                            className="hidden ml-2 md:inline-block">{!onlyUserJobs ? 'Joburile mele' : 'Toate joburile'}</span>
+                    </div>}
                     <div
-                        className="ml-auto bg-indigo-600 hover:bg-indigo-500 py-2 px-3 md:px-4 rounded text-white cursor-pointer transition-all duration-200"
+                        className={`${user ? 'ml-2' : 'ml-auto'} bg-indigo-600 shadow-sm hover:bg-indigo-500 py-2 px-3 md:px-4 rounded text-white cursor-pointer transition-all duration-200`}
                         onClick={(e) => handleAddJob(e)}><FontAwesomeIcon icon="briefcase"/><span
                         className="hidden md:inline-block ml-2">Adaugă job</span>
                     </div>
                 </div>
+                {user && onlyUserJobs &&
+                <div className="disclaimer p-2 mb-4 bg-gray-300 bg-opacity-75 border border-gray-400 text-gray-500">Dupa
+                    finalizarea joburilor nu uita să le marchezi ca fiind completate, pentru a evita confuzia
+                    celorlalți utilizatori.
+                </div>}
                 <SearchInput className="flex mb-2 bg-white p-2 items-center rounded border border-gray-300 md:hidden"
                              elementClass="job"/>
                 {modals.addJobModal && <Modal title='Adaugă job' closeAction={hideAddJobModal}><AddJob/></Modal>}
