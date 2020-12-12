@@ -8,7 +8,7 @@ import Modal from "./Modal/Modal";
 import AddJob from "./Modal/AddJob";
 import JobDetails from "./Modal/JobDetails";
 import Page from "./Layout/Page";
-import logo from '../assets/images/mjobs.svg'
+import SearchInput from "./SearchInput";
 
 
 const JobsList = (props) => {
@@ -43,6 +43,8 @@ const JobsList = (props) => {
                         className="hidden md:inline-block ml-2">Adaugă job</span>
                     </div>
                 </div>
+                <SearchInput className="flex mb-2 bg-white p-2 items-center rounded border border-gray-300 md:hidden"
+                             elementClass="job"/>
                 {modals.addJobModal && <Modal title='Adaugă job' closeAction={hideAddJobModal}><AddJob/></Modal>}
                 {loading ?
                     <div className="flex flex-col w-full items-center justify-center mt-16">
@@ -55,11 +57,11 @@ const JobsList = (props) => {
                     :
                     <div>
                         {jobs ? jobs.map(job => <Job key={job._id} job={job}/>)
-                        :
+                            :
                             <div className="jobs-empty mt-24 flex flex-col items-center justify-center text-gray-400">
                                 <FontAwesomeIcon className="text-3xl" icon="business-time"/>
                                 <p className="mt-2 text-md">Niciun job postat momentan.</p>
-                            </div> }
+                            </div>}
                     </div>}
                 {modals.jobModal &&
                 <Modal title={modals.jobModal.title} type="job-details" closeAction={hideJobModal}>

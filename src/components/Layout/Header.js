@@ -8,12 +8,13 @@ import {
     hideLoginModal,
     hideRegisterModal,
     showLogoutModal,
-    hideLogoutModal
+    hideLogoutModal, storeJobs
 } from "../../store/actions";
 import Login from "../Modal/Login";
 import Register from "../Modal/Register";
 import Logout from "../Modal/Logout";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import SearchInput from "../SearchInput";
 
 const Header = (props) => {
     const {loginModal, registerModal, logoutModal} = props.modals
@@ -22,14 +23,18 @@ const Header = (props) => {
     const dispatch = useDispatch()
 
     return (
-        <nav className="flex items-center bg-white shadow-sm px-4 md:px-8 lg:px-12 py-2 xl:py-4">
+        <nav className="flex items-center bg-white shadow-sm px-4 md:px-8 lg:px-12 py-2">
             <Link to="/" className="text-xl md:text-2xl text-gray-900 flex items-center"><img src={logo} alt="logo"
-                                                                                              className="logo mr-4"/>MicroJobs</Link>
+                                                                                              className="logo mr-4"/><span
+                className="md:hidden lg:flex">MicroJobs</span></Link>
+            <SearchInput
+                className="hidden md:flex ml-0 bg-gray-100 w-3/4 items-center border border-gray-300 rounded px-2 py-1 md:ml-5 md:w-2/4 lg:w-1/3 xl:ml-32"
+                elementClass="job" inputClass="bg-gray-100"/>
             <FontAwesomeIcon icon="bars" onClick={(e) => setMenu(true)}
                              className="flex md:hidden ml-auto text-gray-700 cursor-pointer"/>
             <ul className={`hidden relative md:flex ml-auto ${menu && 'mobile-menu'}`}>
                 {menu && <FontAwesomeIcon icon="times" onClick={(e) => setMenu(false)}
-                                          className="absolute top-0 mt-5 text-lg right-0 mr-4 md:hidden text-gray-700 cursor-pointer"/>}
+                                          className="absolute top-0 mt-3 text-lg right-0 mr-4 md:hidden text-gray-700 cursor-pointer"/>}
                 <li className="text-gray-700 hover:text-indigo-500 transition-all duration-200">
                     <Link to="/" className="nav-link">Joburi</Link>
                 </li>
