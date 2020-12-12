@@ -8,15 +8,16 @@ import {
     SHOW_ADD_JOB_MODAL,
     HIDE_ADD_JOB_MODAL,
     HIDE_LOGOUT_MODAL,
-    SHOW_LOGOUT_MODAL
+    SHOW_LOGOUT_MODAL, SHOW_SUPPORT_MODAL, HIDE_SUPPORT_MODAL
 } from '../actions/actionTypes'
 
 const initialState = {
     loginModal: false,
-    logoutModal:false,
+    logoutModal: false,
     registerModal: false,
     addJobModal: false,
-    jobModal: null
+    jobModal: null,
+    supportModal: false
 }
 
 export default function modalReducer(state = initialState, action) {
@@ -73,6 +74,16 @@ export default function modalReducer(state = initialState, action) {
             return {
                 ...state,
                 addJobModal: false
+            }
+        case SHOW_SUPPORT_MODAL:
+            return {
+                ...state,
+                supportModal: true
+            }
+        case HIDE_SUPPORT_MODAL:
+            return {
+                ...state,
+                supportModal: false
             }
         default:
             return state;

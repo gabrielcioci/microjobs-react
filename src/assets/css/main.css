@@ -19182,7 +19182,7 @@ body {
 
 #root {
   min-height: 100vh;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -19202,11 +19202,13 @@ body {
 }
 
 .logo {
-  height: 40px;
+  height: 34px;
 }
 
 .select-options {
   top: 48px;
+  height: max-content;
+  max-height: 16rem;
 }
 
 .modal-container {
@@ -19217,7 +19219,7 @@ body {
 
 .modal {
   z-index: 105;
-  max-height:90%;
+  max-height: 90%;
   overflow: auto;
 }
 
@@ -19226,24 +19228,25 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
 }
 
 .mobile-menu li {
-  padding:8px 0;
+  padding: 8px 0;
   width: 100%;
   text-align: center;
-  border-radius:4px;
+  border-radius: 4px;
   margin-bottom: 4px;
+  font-size: 20px;
 }
 
 .mobile-menu li:hover {
-  background:#ebf4ff;
+  background: #ebf4ff;
 }
 
 .lds-ripple {
