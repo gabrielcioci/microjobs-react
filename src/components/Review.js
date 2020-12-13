@@ -17,7 +17,7 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/draft`,{headers})
+        axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/draft`, {headers})
             .then(response => {
                 setJobs(response.data)
             })
@@ -53,20 +53,8 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        // build the object
-        const updatedJob = {
-            title: job.title,
-            description: job.description,
-            duration: job.duration,
-            location: job.location,
-            tags: job.tags,
-            date: job.date,
-            reviewed: true,
-            reward: job.reward,
-            postedBy: job.postedBy
-        }
         // update job
-        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/update/${job._id}`, updatedJob, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/accept/${job._id}`, {headers})
             .catch((error) => {
                 console.log(error)
             })
@@ -125,11 +113,11 @@ const Review = (props) => {
                         <div className="text-md text-gray-500 mt-2">Postat acum {durationFromNow(job.createdAt)}</div>
                         <div className="flex items-center mt-4">
                             <div
-                                className="rounded w-full mr-4 py-2 px-4 bg-red-500 hover:bg-red-600 text-center text-white transition-all duration-200 cursor-pointer"
+                                className="rounded w-full mr-4 py-2 px-4 bg-red-400 hover:bg-red-500 text-center text-white transition-all duration-200 cursor-pointer"
                                 onClick={(e) => rejectJob(job)}>Reject
                             </div>
                             <div
-                                className="rounded w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-center text-white transition-all duration-200 cursor-pointer"
+                                className="rounded w-full py-2 px-4 bg-teal-400 hover:bg-teal-500 text-center text-white transition-all duration-200 cursor-pointer"
                                 onClick={(e) => acceptJob(job)}>Accept
                             </div>
                         </div>
