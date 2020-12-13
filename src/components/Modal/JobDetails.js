@@ -2,18 +2,77 @@ import React, {useEffect, useState} from 'react'
 import Moment from "react-moment";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import moment from "moment";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
+import {toast} from "react-toastify";
+import {useCookies} from "react-cookie";
+import {hideJobModal, storeJobs} from "../../store/actions";
 
 const JobDetails = props => {
     const {jobModal} = props.modals
     const [contactDetails, setContactDetails] = useState(false)
     const [author, setAuthor] = useState('')
+    const [cookies, setCookie] = useCookies(['token']);
+    const dispatch = useDispatch()
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/api/users/${jobModal.postedBy}`)
             .then(res => setAuthor(res.data))
     }, [])
+
+    const handleCompleteJob = (e) => {
+        const headers = {}
+        // Check for token
+        if (!cookies.token) return
+        headers['X-AUTH-TOKEN'] = cookies.token
+        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/complete/${jobModal._id}`, {}, {headers})
+            .then((response) => {
+                // Hide Job Details Modal
+                dispatch(hideJobModal())
+                // Success Toast
+                toast.success(response.data.message, {
+                    position: "top-right",
+                    className: 'success-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                // Update job list on FE
+                axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/`)
+                    .then(response => {
+                        dispatch(storeJobs(response.data))
+                    })
+                    .catch((error) => {
+                        toast.error(error.response.data.message, {
+                            position: "top-right",
+                            className: 'error-toast',
+                            autoClose: 3000,
+                            closeButton: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    })
+            })
+            .catch((error) => {
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    className: 'error-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
+    }
 
     return (
         <div className="job-info flex-col">
@@ -67,7 +126,7 @@ const JobDetails = props => {
                 <div>
                     <FontAwesomeIcon icon="check"/>
                 </div>
-                <div className="ml-2">Complet</div>
+                <div className="ml-2" onClick={(e) => handleCompleteJob(e)}>Complet</div>
             </div>}
         </div>
     )

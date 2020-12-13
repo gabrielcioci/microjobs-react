@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useCookies} from "react-cookie";
 import moment from "moment";
 import AdminPage from "./Layout/AdminPage";
+import {toast} from "react-toastify";
 
 
 const Review = (props) => {
@@ -22,7 +23,17 @@ const Review = (props) => {
                 setJobs(response.data)
             })
             .catch((error) => {
-                console.log(error)
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    className: 'error-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
     }
 
@@ -53,10 +64,19 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        // update job
-        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/accept/${job._id}`, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/accept/${job._id}`, {}, {headers})
             .catch((error) => {
-                console.log(error)
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    className: 'error-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .finally(() => {
                 updateJobList()
@@ -70,7 +90,17 @@ const Review = (props) => {
         headers['X-AUTH-TOKEN'] = cookies.token
         axios.delete(`${process.env.REACT_APP_API_URL}/api/jobs/${job._id}`, {headers})
             .catch((error) => {
-                console.log(error)
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    className: 'error-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .finally(() => {
                 updateJobList()

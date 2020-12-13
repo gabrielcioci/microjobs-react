@@ -9,12 +9,12 @@ import AddJob from "./Modal/AddJob";
 import JobDetails from "./Modal/JobDetails";
 import Page from "./Layout/Page";
 import SearchInput from "./SearchInput";
+import {toast} from "react-toastify";
 
 
 const JobsList = (props) => {
-    const {modals, user} = props
+    const {modals, user, jobs} = props
     const [loading, setLoading] = useState(true)
-    const [jobs, setJobs] = useState()
     const [onlyUserJobs, setOnlyUserJobs] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -22,10 +22,19 @@ const JobsList = (props) => {
             .then(response => {
                 setLoading(false)
                 dispatch(storeJobs(response.data))
-                setJobs(response.data)
             })
             .catch((error) => {
-                console.log(error)
+                toast.error(error.response.data.message, {
+                    position: "top-right",
+                    className: 'error-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
     }, [])
 
@@ -36,9 +45,6 @@ const JobsList = (props) => {
 
     const handleJobsFilter = (e) => {
         setOnlyUserJobs(!onlyUserJobs)
-        if (onlyUserJobs)
-            setJobs(props.jobs.filter((job) => job.postedBy === user._id))
-        else setJobs(props.jobs)
     }
 
 
@@ -80,7 +86,8 @@ const JobsList = (props) => {
                     </div>
                     :
                     <div>
-                        {jobs ? jobs.map(job => <Job key={job._id} job={job}/>)
+                        {jobs ? onlyUserJobs ? jobs.filter((job) => job.postedBy === user._id).map(job => <Job
+                                key={job._id} job={job}/>) : jobs.map(job => <Job key={job._id} job={job}/>)
                             :
                             <div className="jobs-empty mt-24 flex flex-col items-center justify-center text-gray-400">
                                 <FontAwesomeIcon className="text-3xl" icon="business-time"/>
