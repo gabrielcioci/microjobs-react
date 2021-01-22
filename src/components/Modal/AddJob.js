@@ -14,6 +14,7 @@ const AddJob = (props) => {
     const [duration, setDuration] = useState(10)
     const [reward, setReward] = useState(10)
     const [tags, setTags] = useState('')
+    const [phone, setPhone] = useState('')
     const [location, setLocation] = useState(cities[0])
     const [formError, setFormError] = useState()
     const dispatch = useDispatch()
@@ -32,6 +33,7 @@ const AddJob = (props) => {
             title: title,
             description: description,
             duration: duration,
+            phone: phone,
             location: location.label,
             tags: tags.split(','),
             date: new Date(),
@@ -49,6 +51,7 @@ const AddJob = (props) => {
                 setDuration(10)
                 setLocation('')
                 setTags('')
+                setPhone('')
                 setReward(10)
 
                 // show toast & hide form
@@ -126,6 +129,14 @@ const AddJob = (props) => {
                        className="rounded flex w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
                        required name="tags" value={tags}
                        onChange={(e) => handleChange(e, setTags)}/>
+            </div>
+            <div className="flex-col mt-2">
+                <label className="block text-gray-500">Tel. de contact</label>
+                <input type="tel"
+                       placeholder="Număr de telefon"
+                       className="rounded flex w-full mt-2 border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
+                       required name="phone" value={phone}
+                       onChange={(e) => handleChange(e, setPhone)}/>
             </div>
             {formError &&
             <div className="mt-4 p-1 bg-red-200 border border-red-400 rounded text-xs text-red-600">{formError}</div>}

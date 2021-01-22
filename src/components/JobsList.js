@@ -55,7 +55,7 @@ const JobsList = (props) => {
                     <h3 className="text-2xl text-gray-700">Microjoburile zilei</h3>
                     {user && <div
                         className="flex items-center ml-auto bg-gray-300 hover:text-gray-700 py-2 px-3 md:px-4 rounded text-gray-600 cursor-pointer transition-all duration-200"
-                        onClick={(e) => handleJobsFilter(e)}>
+                        onClick={handleJobsFilter}>
                         <div>
                             <FontAwesomeIcon icon="align-left"/>
                         </div>
@@ -64,7 +64,7 @@ const JobsList = (props) => {
                     </div>}
                     <div
                         className={`${user ? 'ml-2' : 'ml-auto'} bg-indigo-600 shadow-sm hover:bg-indigo-500 py-2 px-3 md:px-4 rounded text-white cursor-pointer transition-all duration-200`}
-                        onClick={(e) => handleAddJob(e)}><FontAwesomeIcon icon="briefcase"/><span
+                        onClick={handleAddJob}><FontAwesomeIcon icon="briefcase"/><span
                         className="hidden md:inline-block ml-2">Adaugă job</span>
                     </div>
                 </div>

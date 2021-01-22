@@ -83,7 +83,7 @@ const JobDetails = props => {
             </div>
             <div className="flex items-center mt-1">
                 <div className="text-lg text-gray-500">Durează: <span
-                    className="text-gray-700">{jobModal.duration} de minute</span>
+                    className="text-gray-700">{jobModal.duration} min</span>
                 </div>
             </div>
             <div className="flex items-center mt-1">
@@ -108,13 +108,8 @@ const JobDetails = props => {
                 <div className="text-indigo-600 text-xl">{author.name}</div>
                 <div className="text-xs text-gray-500">Membru din <Moment format="DD MMM YYYY"
                                                                           date={author.register_date}/></div>
-                <div className="flex-col mt-2">
-                    <div className="text-gray-600 text-md"><FontAwesomeIcon icon="envelope"
-                                                                            className="mr-2"/>{author.email}
-                    </div>
-                    <div className="text-gray-600 text-md"><FontAwesomeIcon icon="phone-alt"
-                                                                            className="mr-2"/>{author.phone}</div>
-                </div>
+                <div className="mt-2 text-gray-600 text-md"><FontAwesomeIcon icon="phone-alt"
+                                                                             className="mr-2"/>{jobModal.phone}</div>
             </div>}
             <div
                 className="rounded w-full mt-4 py-2 px-4 bg-indigo-600 hover:bg-indigo-500 text-center text-white transition-all duration-200 cursor-pointer"

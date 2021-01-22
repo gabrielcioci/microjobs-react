@@ -11,7 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register = props => {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [formError, setFormError] = useState()
     const dispatch = useDispatch()
@@ -26,7 +25,6 @@ const Register = props => {
             name: name,
             email: email,
             password: password,
-            phone: phone
         }
         axios.post(`${process.env.REACT_APP_API_URL}/api/register`, user)
             .then(res => {
@@ -58,7 +56,7 @@ const Register = props => {
                        required name="name" value={name}
                        onChange={(e) => handleChange(e, setName)}/>
             </div>
-            <div className="flex items-center mt-6">
+            <div className="flex items-center mt-4">
                 <div className="text-md text-white bg-indigo-600 p-2 rounded-l border-indigo-600 border">
                     <FontAwesomeIcon icon="envelope"/></div>
                 <input type="text"
@@ -67,16 +65,7 @@ const Register = props => {
                        required name="email" value={email}
                        onChange={(e) => handleChange(e, setEmail)}/>
             </div>
-            <div className="flex items-center mt-6">
-                <div className="text-md text-white bg-indigo-600 p-2 rounded-l border-indigo-600 border">
-                    <FontAwesomeIcon icon="phone-alt"/></div>
-                <input type="text"
-                       placeholder="Număr de telefon"
-                       className="rounded-r flex w-full border border-gray-300 p-2 outline-none focus:border-indigo-600 text-indigo-800 transition-all duration-200"
-                       required name="phone" value={phone}
-                       onChange={(e) => handleChange(e, setPhone)}/>
-            </div>
-            <div className="flex mt-6">
+            <div className="flex mt-4">
                 <div className="text-md text-white bg-indigo-600 p-2 rounded-l border-indigo-600 border">
                     <FontAwesomeIcon icon="lock"/></div>
                 <input type="password"

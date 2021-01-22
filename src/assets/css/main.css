@@ -19193,6 +19193,13 @@ body {
   padding: 12px 16px;
 }
 
+.error-toast {
+  background: rgb(239, 68, 68);
+  color: white;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
 .modal {
   z-index: 100;
 }
