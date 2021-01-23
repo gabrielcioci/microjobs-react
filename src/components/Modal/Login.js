@@ -6,6 +6,7 @@ import {hideLoginModal, login, showRegisterModal} from "../../store/actions";
 import {useDispatch} from "react-redux";
 import {useCookies} from "react-cookie";
 import google from "../../assets/images/google.svg"
+import {toast} from "react-toastify";
 
 
 const Login = props => {
@@ -25,6 +26,18 @@ const Login = props => {
                 dispatch(login(res.data))
                 setCookie("token", res.data.token, {path: "/"});
                 dispatch(hideLoginModal())
+                props.setMenu(false)
+                toast.success(`Bun venit, ${res.data.name}!`, {
+                    position: "top-right",
+                    className: 'success-toast',
+                    autoClose: 3000,
+                    closeButton: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .catch(err => setFormError(err.response.data.message))
     }

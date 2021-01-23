@@ -27,9 +27,6 @@ const Header = (props) => {
             <Link to="/" className="text-xl md:text-2xl text-gray-900 flex items-center"><img src={logo} alt="logo"
                                                                                               className="logo mr-4"/><span
                 className="md:hidden lg:flex">MicroJobs</span></Link>
-            <SearchInput
-                className="hidden md:flex ml-0 bg-gray-100 w-3/4 items-center border border-gray-300 rounded px-2 py-1 md:ml-5 md:w-2/4 lg:w-1/3 xl:ml-32"
-                elementClass="job" inputClass="bg-gray-100"/>
             <FontAwesomeIcon icon="bars" onClick={(e) => setMenu(true)}
                              className="flex md:hidden ml-auto text-gray-700 cursor-pointer"/>
             <ul className={`hidden relative md:flex ml-auto ${menu && 'mobile-menu'}`}>
@@ -48,9 +45,11 @@ const Header = (props) => {
                              onClick={(e) => dispatch(showLoginModal())}>Autentificare</div>}
                 </li>
             </ul>
-            {loginModal && <Modal title="Autentificare" closeAction={hideLoginModal}><Login/></Modal>}
+            {loginModal &&
+            <Modal title="Autentificare" closeAction={hideLoginModal}><Login setMenu={setMenu}/></Modal>}
             {registerModal && <Modal title="Înregistrare" closeAction={hideRegisterModal}><Register/></Modal>}
-            {logoutModal && <Modal title="Deconectare" closeAction={hideLogoutModal}><Logout/></Modal>}
+            {logoutModal &&
+            <Modal title="Deconectare" closeAction={hideLogoutModal}><Logout setMenu={setMenu}/></Modal>}
         </nav>
     )
 }

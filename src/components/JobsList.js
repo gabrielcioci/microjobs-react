@@ -73,7 +73,7 @@ const JobsList = (props) => {
                     finalizarea joburilor nu uita să le marchezi ca fiind completate, pentru a evita confuzia
                     celorlalți utilizatori.
                 </div>}
-                <SearchInput className="flex mb-2 bg-white p-2 items-center rounded border border-gray-300 md:hidden"
+                <SearchInput className="flex mb-2 bg-white p-2 items-center rounded border border-gray-300"
                              elementClass="job"/>
                 {modals.addJobModal && <Modal title='Adaugă job' closeAction={hideAddJobModal}><AddJob/></Modal>}
                 {loading ?
