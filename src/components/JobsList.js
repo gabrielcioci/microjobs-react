@@ -54,7 +54,7 @@ const JobsList = (props) => {
                 <div className="flex items-center mb-4">
                     <h3 className="text-2xl text-gray-700">Microjoburile zilei</h3>
                     {user && <div
-                        className="flex items-center ml-auto bg-gray-300 hover:text-gray-700 py-2 px-3 md:px-4 rounded text-gray-600 cursor-pointer transition-all duration-200"
+                        className="flex noselect items-center ml-auto bg-gray-300 hover:text-gray-700 py-2 px-3 md:px-4 rounded text-gray-600 cursor-pointer transition-all duration-200"
                         onClick={handleJobsFilter}>
                         <div>
                             <FontAwesomeIcon icon="align-left"/>

@@ -57,6 +57,32 @@ body {
     overflow: auto;
 }
 
+.current-step {
+    display: flex;
+    align-items: center;
+}
+
+.current-step span {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    content: '';
+    display: flex;
+    cursor: pointer;
+    background: #E5E7EB;
+    margin-right: 4px;
+}
+
+.current-step .active {
+    width: 24px;
+    background: #5a67d8;
+}
+
+.disabled {
+    opacity: .4;
+    pointer-events: none;
+}
+
 .mobile-menu {
     display: flex;
     flex-direction: column;
@@ -117,6 +143,17 @@ body {
         height: 72px;
         opacity: 0;
     }
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                            supported by Chrome, Edge, Opera and Firefox */
 }
 
 @media only screen and (min-width: 768px) {
