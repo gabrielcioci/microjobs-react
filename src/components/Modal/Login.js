@@ -20,24 +20,28 @@ const Login = props => {
         method(e.target.value)
     }
 
+    const handleLogin = (res) => {
+        dispatch(login(res.data))
+        setCookie("token", res.data.token, {path: "/"});
+        dispatch(hideLoginModal())
+        props.setMenu(false)
+        toast.success(`Bun venit, ${res.data.name}!`, {
+            position: "top-right",
+            className: 'success-toast',
+            autoClose: 3000,
+            closeButton: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     const handleGoogleResponse = res => {
         axios.post(`${process.env.REACT_APP_API_URL}/api/auth/googlelogin`, {tokenId: res.tokenId})
             .then(res => {
-                dispatch(login(res.data))
-                setCookie("token", res.data.token, {path: "/"});
-                dispatch(hideLoginModal())
-                props.setMenu(false)
-                toast.success(`Bun venit, ${res.data.name}!`, {
-                    position: "top-right",
-                    className: 'success-toast',
-                    autoClose: 3000,
-                    closeButton: false,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                handleLogin(res)
             })
             .catch(err => setFormError(err.response.data.message))
     }
@@ -50,9 +54,7 @@ const Login = props => {
         }
         axios.post(`${process.env.REACT_APP_API_URL}/api/auth`, credentials)
             .then(res => {
-                dispatch(login(res.data))
-                setCookie("token", res.data.token, {path: "/"});
-                dispatch(hideLoginModal())
+                handleLogin(res)
             })
             .catch(err => setFormError(err.response.data.message))
     }
