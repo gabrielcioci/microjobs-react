@@ -95,7 +95,7 @@ const JobDetails = props => {
                 {jobModal.tags.map(tag => {
                     return (
                         <div key={tag}
-                             className="rounded py-1 px-2 text-gray-500 bg-gray-200 mr-2"><FontAwesomeIcon
+                             className="rounded py-1 px-2 text-gray-500 bg-gray-200 mr-2 mb-2"><FontAwesomeIcon
                             icon="tags"
                             className="text-gray-500 mr-1"/>{tag}
                         </div>

@@ -5,6 +5,7 @@ import GoogleLogin from 'react-google-login'
 import {hideLoginModal, login, showRegisterModal} from "../../store/actions";
 import {useDispatch} from "react-redux";
 import {useCookies} from "react-cookie";
+import google from "../../assets/images/google.svg"
 
 
 const Login = props => {
@@ -48,8 +49,10 @@ const Login = props => {
             <GoogleLogin clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                          onSuccess={handleGoogleResponse}
                          onFailure={handleGoogleResponse} cookiePolicy={'single_host_origin'}
-                         buttonText="Autentificare cu Google"
-                         className="w-full flex-row items-center justify-center"
+                         className="w-full flex-row items-center justify-center google-login"
+                         render={renderProps => (
+                             <button className="w-full flex items-center justify-center shadow py-3 text-sm text-gray-600 hover:text-gray-700 transition-all duration-200" onClick={renderProps.onClick} disabled={renderProps.disabled}><img className="w-4 mr-4" src={google} alt="google-logo"/>Autentificare cu Google</button>
+                         )}
             />
             <div className="mt-4 flex justify-center w-full text-sm text-gray-500">sau</div>
             <form className="flex-col" onSubmit={handleSubmit}>
