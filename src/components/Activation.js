@@ -5,6 +5,7 @@ import {Redirect} from "react-router-dom";
 import {login} from "../store/actions";
 import {useCookies} from "react-cookie";
 import {toast} from "react-toastify";
+import config from '../config'
 
 
 const Activation = (props) => {
@@ -12,7 +13,7 @@ const Activation = (props) => {
     const [cookies, setCookie] = useCookies(['token']);
     const {id} = props.match.params
     useEffect(() => {
-        axios.post(`${process.env.REACT_APP_API_URL}/api/activation/user/${id}`)
+        axios.post(`${config.apiUrl}/api/activation/user/${id}`)
             .then(res => {
                 dispatch(login(res.data))
                 setCookie("token", res.data.token, {path: "/"});

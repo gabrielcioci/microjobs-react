@@ -4,6 +4,7 @@ import axios from 'axios'
 import {hideRegisterModal, showLoginModal} from "../../store/actions";
 import {useDispatch} from "react-redux";
 import {toast} from "react-toastify";
+import config from '../../config'
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,7 +27,7 @@ const Register = props => {
             email: email,
             password: password,
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/register`, user)
+        axios.post(`${config.apiUrl}/api/register`, user)
             .then(res => {
                 // show toast
                 toast.success(res.data.message, {

@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {useCookies} from "react-cookie";
 import google from "../../assets/images/google.svg"
 import {toast} from "react-toastify";
+import config from '../../config'
 
 
 const Login = props => {
@@ -39,7 +40,7 @@ const Login = props => {
     }
 
     const handleGoogleResponse = res => {
-        axios.post(`${process.env.REACT_APP_API_URL}/api/auth/googlelogin`, {tokenId: res.tokenId})
+        axios.post(`${config.apiUrl}/api/auth/googlelogin`, {tokenId: res.tokenId})
             .then(res => {
                 handleLogin(res)
             })
@@ -52,7 +53,7 @@ const Login = props => {
             email: email,
             password: password
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/auth`, credentials)
+        axios.post(`${config.apiUrl}/api/auth`, credentials)
             .then(res => {
                 handleLogin(res)
             })
@@ -61,7 +62,7 @@ const Login = props => {
 
     return (
         <div>
-            <GoogleLogin clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            <GoogleLogin clientId={config.googleClientId}
                          onSuccess={handleGoogleResponse}
                          onFailure={handleGoogleResponse} cookiePolicy={'single_host_origin'}
                          className="w-full flex-row items-center justify-center google-login"

@@ -6,3 +6,4 @@ npm-debug.log*
 .DS_Store
 # Configuration
 .env
+/src/config.js

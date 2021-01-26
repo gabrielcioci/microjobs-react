@@ -6,6 +6,7 @@ import {connect, useDispatch} from "react-redux";
 import {toast} from "react-toastify";
 import {useCookies} from "react-cookie";
 import {hideJobModal, storeJobs} from "../../store/actions";
+import config from '../../config'
 
 const JobDetails = props => {
     const {jobModal} = props.modals
@@ -15,7 +16,7 @@ const JobDetails = props => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/users/${jobModal.postedBy}`)
+        axios.get(`${config.apiUrl}/api/users/${jobModal.postedBy}`)
             .then(res => setAuthor(res.data))
     }, [])
 
@@ -24,7 +25,7 @@ const JobDetails = props => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/complete/${jobModal._id}`, {}, {headers})
+        axios.post(`${config.apiUrl}/api/jobs/complete/${jobModal._id}`, {}, {headers})
             .then((response) => {
                 // Hide Job Details Modal
                 dispatch(hideJobModal())
@@ -41,7 +42,7 @@ const JobDetails = props => {
                     progress: undefined,
                 });
                 // Update job list on FE
-                axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/`)
+                axios.get(`${config.apiUrl}/api/jobs/`)
                     .then(response => {
                         dispatch(storeJobs(response.data))
                     })

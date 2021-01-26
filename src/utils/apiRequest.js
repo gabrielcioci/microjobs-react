@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {storeJobs, login} from "../store/actions";
+import config from '../config'
 
 const getCookieValue = (ctx, cookieName) => {
 
@@ -32,7 +33,7 @@ export default async (endpoint, data = {}, ctx = null, rawError = false) => {
     try {
         // Make the request
         const res = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api${endpoint}`,
+            `${config.apiUrl}/api${endpoint}`,
             data,
             {
                 headers

@@ -7,6 +7,7 @@ import {hideAddJobModal} from "../../store/actions";
 import {useCookies} from "react-cookie";
 import SelectInput from "../SelectInput";
 import 'react-toastify/dist/ReactToastify.css';
+import config from '../../config'
 
 const AddJob = (props) => {
     const [title, setTitle] = useState('')
@@ -45,7 +46,7 @@ const AddJob = (props) => {
         }
 
         // make the post req
-        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/add`, job, {headers})
+        axios.post(`${config.apiUrl}/api/jobs/add`, job, {headers})
             .then(() => {
 
                 // clear input fields

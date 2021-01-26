@@ -5,6 +5,7 @@ import {useCookies} from "react-cookie";
 import {useDispatch, connect} from "react-redux";
 import Header from "./Header";
 import Footer from "./Footer";
+import config from '../../config'
 
 
 const Page = props => {
@@ -17,7 +18,7 @@ const Page = props => {
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
         // Get user info based on token
-        axios.get(`${process.env.REACT_APP_API_URL}/api/auth/user`, {headers})
+        axios.get(`${config.apiUrl}/api/auth/user`, {headers})
             .then(res => {
                 dispatch(login(res.data))
             })

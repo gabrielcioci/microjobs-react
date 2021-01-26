@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {hideSupportModal} from "../../store/actions";
 import SelectInput from "../SelectInput";
 import categories from "../../utils/categories";
+import config from '../../config'
 
 
 const Support = props => {
@@ -34,7 +35,7 @@ const Support = props => {
             category: category.value,
             description: description
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/support/ticket`, ticket)
+        axios.post(`${config.apiUrl}/api/support/ticket`, ticket)
             .then(res => {
                 // clear input fields
                 setName('')

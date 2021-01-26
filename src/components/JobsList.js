@@ -10,6 +10,7 @@ import JobDetails from "./Modal/JobDetails";
 import Page from "./Layout/Page";
 import SearchInput from "./SearchInput";
 import {toast} from "react-toastify";
+import config from '../config'
 
 
 const JobsList = (props) => {
@@ -18,7 +19,7 @@ const JobsList = (props) => {
     const [onlyUserJobs, setOnlyUserJobs] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/`)
+        axios.get(`${config.apiUrl}/api/jobs/`)
             .then(response => {
                 setLoading(false)
                 dispatch(storeJobs(response.data))

@@ -5,6 +5,7 @@ import {useCookies} from "react-cookie";
 import moment from "moment";
 import AdminPage from "./Layout/AdminPage";
 import {toast} from "react-toastify";
+import config from '../config'
 
 
 const Review = (props) => {
@@ -18,7 +19,7 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.get(`${process.env.REACT_APP_API_URL}/api/jobs/draft`, {headers})
+        axios.get(`${config.apiUrl}/api/jobs/draft`, {headers})
             .then(response => {
                 setJobs(response.data)
             })
@@ -64,7 +65,7 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.post(`${process.env.REACT_APP_API_URL}/api/jobs/accept/${job._id}`, {}, {headers})
+        axios.post(`${config.apiUrl}/api/jobs/accept/${job._id}`, {}, {headers})
             .catch((error) => {
                 toast.error(error.response.data.message, {
                     position: "top-right",
@@ -88,7 +89,7 @@ const Review = (props) => {
         // Check for token
         if (!cookies.token) return
         headers['X-AUTH-TOKEN'] = cookies.token
-        axios.delete(`${process.env.REACT_APP_API_URL}/api/jobs/${job._id}`, {headers})
+        axios.delete(`${config.apiUrl}/api/jobs/${job._id}`, {headers})
             .catch((error) => {
                 toast.error(error.response.data.message, {
                     position: "top-right",
